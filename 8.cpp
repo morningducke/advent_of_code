@@ -9,25 +9,6 @@
 
 using namespace std;
 
-// 1 - visible
-// -1 - not visible
-// 0 - not visited yet
-bool dfs(vector<vector<int>>& graph, int i, int j, int i_prev, int j_prev, vector<vector<int>>& marked) {
-    if (i < 0 || j < 0 || i >= graph.size() || j >= graph[0].size()) {
-        return true;
-    }
-    if (marked[i][j] != 0) {
-        return marked[i][j] == 1 ? true : false;    
-    }
-    if (i_prev != -1 && graph[i][j] <= graph[i_prev][j_prev]) {
-        return false;
-    }
-
-    marked[i][j] = dfs(graph, i + 1, j, i, j, marked) || dfs(graph, i, j + 1, i, j, marked) ||
-                   dfs(graph, i - 1, j, i, j, marked) || dfs(graph, i, j - 1, i, j, marked);
-
-    return marked[i][j];
-}
 int main()  {
 
     
